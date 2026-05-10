@@ -272,6 +272,261 @@
     text-decoration: underline;
     color: var(--link-hover);
   }
+
+  /* ---------- Form view ---------- */
+  .form-view { max-width: 1200px; }
+  .breadcrumb {
+    font-size: 13px;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .breadcrumb-home {
+    color: var(--link);
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .breadcrumb-home:hover {
+    text-decoration: underline;
+    color: var(--link-hover);
+  }
+  .breadcrumb-sep {
+    color: var(--text-muted);
+    margin: 0 6px;
+  }
+  .breadcrumb-current {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .form-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+    margin: 4px 0 10px 0;
+    line-height: 1.2;
+  }
+  .action-pane {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding: 6px 0 8px 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .action-btn {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    color: var(--link);
+    font-size: 13px;
+    font-family: inherit;
+  }
+  .action-btn:hover { text-decoration: underline; }
+  .action-btn .tile {
+    width: 14px;
+    height: 14px;
+    background: var(--header-green);
+    border-radius: 1px;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 14px;
+    text-align: center;
+    margin-right: 6px;
+    display: inline-block;
+    font-family: inherit;
+  }
+  .filter-strip {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+  }
+  .filter-input {
+    position: relative;
+    width: 280px;
+    height: 26px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    background: #FFFFFF;
+    display: flex;
+    align-items: center;
+  }
+  .filter-input svg {
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    color: var(--text-muted);
+    pointer-events: none;
+  }
+  .filter-input input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    color: var(--text);
+    font-size: 13px;
+    font-family: inherit;
+    padding: 0 8px 0 26px;
+  }
+  .filter-label {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-right: 8px;
+  }
+
+  .list-grid {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    background: var(--page-bg);
+    border: 1px solid var(--border);
+  }
+  .list-grid thead th {
+    background: var(--hover-bg);
+    color: var(--text);
+    font-weight: 600;
+    text-align: left;
+    padding: 6px 8px;
+    border-bottom: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  .list-grid thead th:last-child { border-right: 0; }
+  .list-grid tbody td {
+    padding: 5px 8px;
+    border-bottom: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: middle;
+  }
+  .list-grid tbody td:last-child { border-right: 0; }
+  .list-grid tbody tr:nth-child(even) td { background: var(--outer-bg); }
+  .list-grid tbody tr:hover td { background: var(--hover-bg); cursor: default; }
+  .list-grid tbody tr.row-selected td {
+    background: var(--selected-bg);
+  }
+  .list-grid tbody tr.row-selected td:first-child {
+    box-shadow: inset 3px 0 0 0 var(--header-green);
+  }
+  .list-grid .col-check {
+    width: 28px;
+    text-align: center;
+  }
+
+  /* Form header (Pattern B) */
+  .form-header {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding: 6px 0 12px 0;
+    flex-wrap: wrap;
+  }
+  .form-header .field-pair {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--text);
+  }
+  .form-header .field-label {
+    color: var(--text-muted);
+  }
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 8px;
+    background: var(--header-green);
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 2px;
+  }
+
+  /* Fast tabs (Pattern B) */
+  .fast-tab {
+    border: 1px solid var(--border);
+    border-bottom: 0;
+    background: var(--page-bg);
+  }
+  .fast-tab:last-child { border-bottom: 1px solid var(--border); }
+  .fast-tab-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 8px 10px;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    text-align: left;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 14px;
+  }
+  .fast-tab-header:hover { background: var(--hover-bg); }
+  .fast-tab-name {
+    font-weight: 600;
+    color: var(--text);
+    flex: 0 0 auto;
+  }
+  .fast-tab-summary {
+    flex: 1 1 auto;
+    text-align: right;
+    color: var(--text-muted);
+    font-size: 13px;
+    padding-right: 10px;
+  }
+  .fast-tab .chev {
+    width: 14px;
+    height: 14px;
+    color: var(--text);
+    flex: 0 0 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 6px;
+  }
+  .fast-tab-body {
+    padding: 10px 14px 14px 14px;
+    border-top: 1px solid var(--border);
+    background: var(--page-bg);
+  }
+  .fast-tab[hidden-body] .fast-tab-body { display: none; }
+  .field-row {
+    display: grid;
+    grid-template-columns: 200px minmax(220px, 360px);
+    gap: 10px 16px;
+    align-items: center;
+    padding: 4px 0;
+  }
+  .field-row label {
+    font-size: 13px;
+    color: var(--text);
+  }
+  .field-row input,
+  .field-row select {
+    height: 26px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 0 8px;
+    font-size: 13px;
+    font-family: inherit;
+    color: var(--text);
+    background: #FFFFFF;
+    width: 100%;
+  }
+  .field-row input:focus,
+  .field-row select:focus {
+    outline: 0;
+    border-color: var(--focus-blue);
+  }
 </style>
 </head>
 <body>
@@ -359,11 +614,11 @@
             <span class="chev"></span><span class="section-title">Setup</span>
           </button>
           <ul class="sublist">
-            <li><a href="#">Poultry Parameters</a></li>
-            <li><a href="#">Poultry Types</a></li>
-            <li><a href="#">Poultry Breeds</a></li>
-            <li><a href="#">Vaccination Programs</a></li>
-            <li><a href="#">Cost Buckets</a></li>
+            <li><a href="#" data-form-key="poultry-parameters">Poultry Parameters</a></li>
+            <li><a href="#" data-form-key="poultry-types">Poultry Types</a></li>
+            <li><a href="#" data-form-key="poultry-breeds">Poultry Breeds</a></li>
+            <li><a href="#" data-form-key="vaccination-programs">Vaccination Programs</a></li>
+            <li><a href="#" data-form-key="cost-buckets">Cost Buckets</a></li>
           </ul>
         </div>
 
@@ -373,14 +628,14 @@
             <span class="chev"></span><span class="section-title">Masters</span>
           </button>
           <ul class="sublist">
-            <li><a href="#">Poultry Farms</a></li>
-            <li><a href="#">Poultry Houses</a></li>
-            <li><a href="#">Poultry Sections</a></li>
-            <li><a href="#">Poultry Suppliers</a></li>
-            <li><a href="#">Poultry Customers</a></li>
-            <li><a href="#">Feed Items</a></li>
-            <li><a href="#">Medicines</a></li>
-            <li><a href="#">Flocks</a></li>
+            <li><a href="#" data-form-key="poultry-farms">Poultry Farms</a></li>
+            <li><a href="#" data-form-key="poultry-houses">Poultry Houses</a></li>
+            <li><a href="#" data-form-key="poultry-sections">Poultry Sections</a></li>
+            <li><a href="#" data-form-key="poultry-suppliers">Poultry Suppliers</a></li>
+            <li><a href="#" data-form-key="poultry-customers">Poultry Customers</a></li>
+            <li><a href="#" data-form-key="feed-items">Feed Items</a></li>
+            <li><a href="#" data-form-key="medicines">Medicines</a></li>
+            <li><a href="#" data-form-key="flocks">Flocks</a></li>
           </ul>
         </div>
 
@@ -390,12 +645,12 @@
             <span class="chev"></span><span class="section-title">Operations</span>
           </button>
           <ul class="sublist">
-            <li><a href="#">Cycles</a></li>
-            <li><a href="#">Placements</a></li>
-            <li><a href="#">Placement Lines</a></li>
-            <li><a href="#">Transfers</a></li>
-            <li><a href="#">Transfer Lines</a></li>
-            <li><a href="#">Mortality Entries</a></li>
+            <li><a href="#" data-form-key="cycles">Cycles</a></li>
+            <li><a href="#" data-form-key="placements">Placements</a></li>
+            <li><a href="#" data-form-key="placement-lines">Placement Lines</a></li>
+            <li><a href="#" data-form-key="transfers">Transfers</a></li>
+            <li><a href="#" data-form-key="transfer-lines">Transfer Lines</a></li>
+            <li><a href="#" data-form-key="mortality-entries">Mortality Entries</a></li>
           </ul>
         </div>
       </div>
@@ -403,7 +658,7 @@
       <div class="col">
         <!-- Standalone Production Entries -->
         <div class="standalone">
-          <a href="#">Production Entries</a>
+          <a href="#" data-form-key="production-entries">Production Entries</a>
         </div>
 
         <!-- Hatchery -->
@@ -412,8 +667,8 @@
             <span class="chev"></span><span class="section-title">Hatchery</span>
           </button>
           <ul class="sublist">
-            <li><a href="#">Incubation Batches</a></li>
-            <li><a href="#">Hatch Results</a></li>
+            <li><a href="#" data-form-key="incubation-batches">Incubation Batches</a></li>
+            <li><a href="#" data-form-key="hatch-results">Hatch Results</a></li>
           </ul>
         </div>
 
@@ -423,10 +678,10 @@
             <span class="chev"></span><span class="section-title">Dispatch and Analytics</span>
           </button>
           <ul class="sublist">
-            <li><a href="#">Dispatches</a></li>
-            <li><a href="#">Dispatch Lines</a></li>
-            <li><a href="#">Cost Transactions</a></li>
-            <li><a href="#">KPI Snapshots</a></li>
+            <li><a href="#" data-form-key="dispatches">Dispatches</a></li>
+            <li><a href="#" data-form-key="dispatch-lines">Dispatch Lines</a></li>
+            <li><a href="#" data-form-key="cost-transactions">Cost Transactions</a></li>
+            <li><a href="#" data-form-key="kpi-snapshots">KPI Snapshots</a></li>
           </ul>
         </div>
       </div>
@@ -498,6 +753,8 @@
   renderAll();
 })();
 </script>
+
+<script src="forms.js"></script>
 
 </body>
 </html>
