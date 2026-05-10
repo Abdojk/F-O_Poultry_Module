@@ -272,6 +272,255 @@
     text-decoration: underline;
     color: var(--link-hover);
   }
+
+  /* ---------- Dashboard tokens ---------- */
+  :root {
+    --text-faint: #8A8886;
+    --status-ok: #107C10;
+    --status-ok-bg: #DFF6DD;
+    --status-warn: #B07500;
+    --status-warn-bg: #FFF4CE;
+    --status-crit: #A4262C;
+    --status-crit-bg: #FDE7E9;
+  }
+
+  /* ---------- Dashboard header strip ---------- */
+  .dashboard { margin-bottom: 0; }
+  .dash-kicker {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+  .dash-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2px;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .dash-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .dash-period {
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--text-muted);
+    line-height: 1.2;
+  }
+  .dash-live {
+    font-size: 12px;
+    color: var(--text-muted);
+    display: inline-flex;
+    align-items: center;
+  }
+  .dash-live-dot {
+    position: relative;
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--status-ok);
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .dash-live-pulse {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--status-ok);
+    transform-origin: center center;
+    animation: livePulse 1.6s ease-out infinite;
+  }
+  @keyframes livePulse {
+    0%   { transform: scale(1);   opacity: 1;   }
+    50%  { transform: scale(1.6); opacity: 0.3; }
+    100% { transform: scale(1);   opacity: 1;   }
+  }
+
+  /* ---------- Dashboard controls row ---------- */
+  .dash-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .period-switcher {
+    display: inline-flex;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .period-btn {
+    background: #FFFFFF;
+    border: 0;
+    border-left: 1px solid var(--border);
+    padding: 6px 14px;
+    font-size: 12px;
+    color: var(--text);
+    cursor: default;
+    font-family: inherit;
+    line-height: 1.2;
+  }
+  .period-btn:first-child { border-left: 0; }
+  .period-btn.selected {
+    background: var(--header-green);
+    color: #FFFFFF;
+    font-weight: 600;
+  }
+  .dash-legend {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .legend-swatch {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+  }
+  .legend-swatch.ok   { background: var(--status-ok); }
+  .legend-swatch.warn { background: var(--status-warn); }
+  .legend-swatch.crit { background: var(--status-crit); }
+  .legend-vs { color: var(--text-faint); margin-left: 4px; }
+
+  /* ---------- KPI grid ---------- */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+  }
+  @media (max-width: 1099px) { .kpi-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  @media (max-width: 799px)  { .kpi-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 559px)  { .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+  /* ---------- KPI tile ---------- */
+  .kpi-tile {
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--border);
+    border-radius: 2px;
+    padding: 12px 14px 10px 14px;
+    min-height: 124px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: default;
+    transition: box-shadow 120ms ease, transform 120ms ease;
+  }
+  .kpi-tile.ok   { border-left-color: var(--status-ok); }
+  .kpi-tile.warn { border-left-color: var(--status-warn); }
+  .kpi-tile.crit { border-left-color: var(--status-crit); }
+  .kpi-tile:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transform: translateY(-1px);
+  }
+  .kpi-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .kpi-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    font-weight: 600;
+    line-height: 1.25;
+    max-width: 70%;
+  }
+  .status-pill {
+    font-size: 9px;
+    padding: 2px 6px;
+    border-radius: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+    line-height: 1.3;
+  }
+  .status-pill.ok   { color: var(--status-ok);   background: var(--status-ok-bg); }
+  .status-pill.warn { color: var(--status-warn); background: var(--status-warn-bg); }
+  .status-pill.crit { color: var(--status-crit); background: var(--status-crit-bg); }
+  .kpi-value-row {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-top: 2px;
+  }
+  .kpi-value {
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1;
+  }
+  .kpi-unit {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  .kpi-target-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .kpi-delta {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-weight: 600;
+  }
+  .kpi-delta.good { color: var(--status-ok); }
+  .kpi-delta.warn { color: var(--status-warn); }
+  .kpi-delta.crit { color: var(--status-crit); }
+  .kpi-spark {
+    margin-top: 6px;
+    margin-left: -2px;
+    display: block;
+  }
+
+  .dash-footer {
+    font-size: 11px;
+    color: var(--text-faint);
+    text-align: right;
+    margin-top: 18px;
+  }
+
+  /* ---------- Section separator ---------- */
+  .section-separator {
+    margin-top: 32px;
+    border-top: 1px solid var(--border);
+    padding-top: 18px;
+    margin-bottom: 14px;
+  }
+  .section-separator-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
 </style>
 </head>
 <body>
@@ -342,6 +591,39 @@
   </aside>
 
   <main class="content">
+    <section class="dashboard" aria-label="Executive dashboard">
+      <div class="dash-kicker">POULTRY MANAGEMENT</div>
+      <div class="dash-title-row">
+        <div>
+          <span class="dash-title">Executive Dashboard</span><span class="dash-period"> &middot;&nbsp; November 2026</span>
+        </div>
+        <div class="dash-live">
+          <span class="dash-live-dot" aria-hidden="true"><span class="dash-live-pulse"></span></span>
+          <span>Live&nbsp; &middot;&nbsp; last refreshed 14:32</span>
+        </div>
+      </div>
+      <div class="dash-controls">
+        <div class="period-switcher" role="group" aria-label="Period">
+          <button type="button" class="period-btn selected" data-inert>This month</button>
+          <button type="button" class="period-btn" data-inert>Last month</button>
+          <button type="button" class="period-btn" data-inert>YTD</button>
+          <button type="button" class="period-btn" data-inert>Rolling 12 months</button>
+        </div>
+        <div class="dash-legend">
+          <span class="legend-item"><span class="legend-swatch ok"></span>On target</span>
+          <span class="legend-item"><span class="legend-swatch warn"></span>Warning</span>
+          <span class="legend-item"><span class="legend-swatch crit"></span>Critical</span>
+          <span class="legend-vs">vs Target</span>
+        </div>
+      </div>
+      <div class="kpi-grid" id="kpi-grid"></div>
+      <div class="dash-footer">Source &mdash; Poultry Management module &middot; Cost Transactions &middot; KPI Snapshots</div>
+    </section>
+
+    <div class="section-separator">
+      <div class="section-separator-label">MODULE NAVIGATION</div>
+    </div>
+
     <div class="toolbar">
       <button type="button" class="toolbar-btn" id="expand-all">
         <span class="tile">+</span>Expand all
@@ -495,6 +777,102 @@
 
   document.addEventListener('submit', function (e) { e.preventDefault(); });
 
+  var KPIS = [
+    { label: "Revenue this period",     value: "51,240", unit: "KD",      target: "50,000 KD", delta: "+2.5%",  deltaDir: "up",   dirGood: "up",   status: "ok",
+      spark: [46.2, 47.1, 47.8, 48.4, 48.9, 49.2, 49.8, 50.1, 50.4, 50.8, 51.0, 51.2] },
+    { label: "Gross margin",            value: "37.5",   unit: "%",       target: "35.0%",     delta: "+2.5 pp", deltaDir: "up",   dirGood: "up",   status: "ok",
+      spark: [34.1, 34.5, 35.0, 35.2, 35.4, 35.8, 36.1, 36.4, 36.8, 37.1, 37.3, 37.5] },
+    { label: "Cost per egg",            value: "0.0258", unit: "KD",      target: "0.0240 KD", delta: "+7.5%",  deltaDir: "up",   dirGood: "down", status: "warn",
+      spark: [0.0238, 0.0240, 0.0241, 0.0242, 0.0244, 0.0246, 0.0248, 0.0250, 0.0252, 0.0254, 0.0256, 0.0258] },
+    { label: "Total egg production",    value: "1.28",   unit: "M eggs",  target: "1.25 M",    delta: "+2.4%",  deltaDir: "up",   dirGood: "up",   status: "ok",
+      spark: [1.21, 1.22, 1.23, 1.24, 1.24, 1.25, 1.25, 1.26, 1.27, 1.27, 1.28, 1.28] },
+    { label: "Eggs per hen per day",    value: "0.853",  unit: "",        target: "0.850",     delta: "+0.4%",  deltaDir: "up",   dirGood: "up",   status: "ok",
+      spark: [0.846, 0.848, 0.849, 0.850, 0.850, 0.851, 0.852, 0.852, 0.853, 0.853, 0.853, 0.853] },
+    { label: "Mortality",               value: "2.4",    unit: "%",       target: "1.5%",      delta: "+60%",   deltaDir: "up",   dirGood: "down", status: "crit",
+      spark: [1.4, 1.5, 1.5, 1.6, 1.6, 1.7, 1.8, 1.9, 2.0, 2.2, 2.3, 2.4] },
+    { label: "Feed conversion ratio",   value: "2.18",   unit: "kg/kg",   target: "2.05",      delta: "+6.3%",  deltaDir: "up",   dirGood: "down", status: "warn",
+      spark: [2.04, 2.05, 2.06, 2.08, 2.10, 2.11, 2.13, 2.14, 2.15, 2.16, 2.17, 2.18] },
+    { label: "Dispatch volume",         value: "1.21",   unit: "M eggs",  target: "1.20 M",    delta: "+0.8%",  deltaDir: "up",   dirGood: "up",   status: "ok",
+      spark: [1.16, 1.17, 1.18, 1.18, 1.19, 1.19, 1.19, 1.20, 1.20, 1.20, 1.21, 1.21] },
+    { label: "Current bird count",      value: "49,820", unit: "",        target: "50,000",    delta: "-0.4%",  deltaDir: "down", dirGood: "up",   status: "ok",
+      spark: [50100, 50080, 50060, 50040, 50000, 49980, 49960, 49940, 49900, 49870, 49840, 49820] },
+    { label: "Vaccination compliance",  value: "98.2",   unit: "%",       target: "95.0%",     delta: "+3.2 pp", deltaDir: "up",   dirGood: "up",   status: "ok",
+      spark: [96.5, 96.8, 97.0, 97.2, 97.4, 97.5, 97.7, 97.9, 98.0, 98.1, 98.2, 98.2] }
+  ];
+
+  var STATUS_COLOR = { ok: '#107C10', warn: '#B07500', crit: '#A4262C' };
+  var STATUS_LABEL = { ok: 'ON TARGET', warn: 'WARNING', crit: 'CRITICAL' };
+
+  function deltaClass(k) {
+    var good = (k.dirGood === 'up' && k.deltaDir === 'up') ||
+               (k.dirGood === 'down' && k.deltaDir === 'down');
+    if (good) return 'good';
+    if (k.status === 'crit') return 'crit';
+    return 'warn';
+  }
+
+  function arrowSvg(dir) {
+    if (dir === 'up') {
+      return '<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">' +
+             '<line x1="5" y1="9" x2="5" y2="2" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' +
+             '<polyline points="2,5 5,2 8,5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>' +
+             '</svg>';
+    }
+    return '<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">' +
+           '<line x1="5" y1="1" x2="5" y2="8" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' +
+           '<polyline points="2,5 5,8 8,5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>' +
+           '</svg>';
+  }
+
+  function sparkSvg(data, status) {
+    var w = 110, h = 28;
+    var min = Math.min.apply(null, data);
+    var max = Math.max.apply(null, data);
+    var range = (max - min) || 1;
+    var pts = [];
+    for (var i = 0; i < data.length; i++) {
+      var x = (i / (data.length - 1)) * (w - 2) + 1;
+      var y = h - 2 - ((data[i] - min) / range) * (h - 6);
+      pts.push(x.toFixed(2) + ',' + y.toFixed(2));
+    }
+    var color = STATUS_COLOR[status];
+    var firstX = (1).toFixed(2);
+    var lastX = (w - 1).toFixed(2);
+    var area = firstX + ',' + h + ' ' + pts.join(' ') + ' ' + lastX + ',' + h;
+    return '<svg class="kpi-spark" width="' + w + '" height="' + h + '" viewBox="0 0 ' + w + ' ' + h + '" aria-hidden="true">' +
+           '<polyline points="' + area + '" fill="' + color + '" fill-opacity="0.10" stroke="none"/>' +
+           '<polyline points="' + pts.join(' ') + '" fill="none" stroke="' + color + '" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>' +
+           '</svg>';
+  }
+
+  function renderTile(k) {
+    var dCls = deltaClass(k);
+    return '<div class="kpi-tile ' + k.status + '" data-inert>' +
+      '<div>' +
+        '<div class="kpi-top">' +
+          '<div class="kpi-label">' + k.label + '</div>' +
+          '<div class="status-pill ' + k.status + '">' + STATUS_LABEL[k.status] + '</div>' +
+        '</div>' +
+        '<div class="kpi-value-row">' +
+          '<span class="kpi-value">' + k.value + '</span>' +
+          (k.unit ? '<span class="kpi-unit">' + k.unit + '</span>' : '') +
+        '</div>' +
+        '<div class="kpi-target-row">' +
+          '<span>Target ' + k.target + '</span>' +
+          '<span class="kpi-delta ' + dCls + '">' + arrowSvg(k.deltaDir) + k.delta + '</span>' +
+        '</div>' +
+      '</div>' +
+      sparkSvg(k.spark, k.status) +
+      '</div>';
+  }
+
+  function renderDashboard() {
+    var grid = document.getElementById('kpi-grid');
+    if (!grid) return;
+    grid.innerHTML = KPIS.map(renderTile).join('');
+  }
+
+  renderDashboard();
   renderAll();
 })();
 </script>
