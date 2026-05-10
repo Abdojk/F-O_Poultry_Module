@@ -272,6 +272,259 @@
     text-decoration: underline;
     color: var(--link-hover);
   }
+
+  /* ===== Executive Dashboard (additive) ===== */
+  :root {
+    --text-faint: #8A8886;
+    --status-ok: #107C10;
+    --status-ok-bg: #DFF6DD;
+    --status-warn: #B07500;
+    --status-warn-bg: #FFF4CE;
+    --status-crit: #A4262C;
+    --status-crit-bg: #FDE7E9;
+  }
+
+  .dash-header { display: block; }
+  .dash-kicker {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    line-height: 1.2;
+  }
+  .dash-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2px;
+  }
+  .dash-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .dash-title-period {
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+  .dash-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .dash-live-dot-wrap {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    display: inline-block;
+  }
+  .dash-live-dot, .dash-live-dot-pulse {
+    position: absolute;
+    inset: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--status-ok);
+  }
+  .dash-live-dot-pulse {
+    animation: livePulse 1.6s ease-out infinite;
+  }
+  @keyframes livePulse {
+    0%   { transform: scale(1);   opacity: 1;   }
+    50%  { transform: scale(1.6); opacity: 0.3; }
+    100% { transform: scale(1);   opacity: 1;   }
+  }
+
+  .dash-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 14px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .dash-periods {
+    display: inline-flex;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .dash-period-btn {
+    background: #FFFFFF;
+    border: 0;
+    padding: 6px 14px;
+    font-size: 12px;
+    color: var(--text);
+    cursor: pointer;
+    font-family: inherit;
+    line-height: 1.2;
+  }
+  .dash-period-btn + .dash-period-btn {
+    border-left: 1px solid var(--border);
+  }
+  .dash-period-btn.is-selected {
+    background: var(--header-green);
+    color: #FFFFFF;
+    font-weight: 600;
+  }
+
+  .dash-legend {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .dash-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .dash-legend-swatch {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+  }
+  .dash-legend-swatch--ok   { background: var(--status-ok); }
+  .dash-legend-swatch--warn { background: var(--status-warn); }
+  .dash-legend-swatch--crit { background: var(--status-crit); }
+  .dash-legend-vs { color: var(--text-faint); }
+
+  .dash-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+  }
+  @media (max-width: 1099px) {
+    .dash-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+  @media (max-width: 799px) {
+    .dash-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  @media (max-width: 559px) {
+    .dash-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  .dash-tile {
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-left-width: 4px;
+    border-radius: 2px;
+    padding: 12px 14px 10px 14px;
+    min-height: 124px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: default;
+    transition: box-shadow 120ms ease, transform 120ms ease;
+  }
+  .dash-tile:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transform: translateY(-1px);
+  }
+  .dash-tile--ok   { border-left-color: var(--status-ok); }
+  .dash-tile--warn { border-left-color: var(--status-warn); }
+  .dash-tile--crit { border-left-color: var(--status-crit); }
+
+  .dash-tile-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    gap: 8px;
+  }
+  .dash-tile-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    font-weight: 600;
+    line-height: 1.25;
+    max-width: 70%;
+  }
+  .dash-pill {
+    font-size: 9px;
+    padding: 2px 6px;
+    border-radius: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+    line-height: 1.4;
+  }
+  .dash-pill--ok   { color: var(--status-ok);   background: var(--status-ok-bg); }
+  .dash-pill--warn { color: var(--status-warn); background: var(--status-warn-bg); }
+  .dash-pill--crit { color: var(--status-crit); background: var(--status-crit-bg); }
+
+  .dash-tile-value-row {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-top: 2px;
+  }
+  .dash-value {
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1;
+  }
+  .dash-unit {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .dash-tile-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+  .dash-delta {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-weight: 600;
+  }
+  .dash-delta--good { color: var(--status-ok); }
+  .dash-delta--warn { color: var(--status-warn); }
+  .dash-delta--crit { color: var(--status-crit); }
+
+  .dash-spark {
+    display: block;
+    margin-top: 6px;
+    margin-left: -2px;
+  }
+
+  .dash-footer-caption {
+    font-size: 11px;
+    color: var(--text-faint);
+    text-align: right;
+    margin-top: 18px;
+  }
+
+  .dash-separator {
+    margin-top: 32px;
+    border-top: 1px solid var(--border);
+    padding-top: 18px;
+    margin-bottom: 14px;
+  }
+  .dash-separator-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
 </style>
 </head>
 <body>
@@ -342,6 +595,48 @@
   </aside>
 
   <main class="content">
+    <!-- ===== Executive Dashboard (additive) ===== -->
+    <section class="dash" aria-label="Executive dashboard">
+      <div class="dash-header">
+        <div class="dash-kicker">POULTRY MANAGEMENT</div>
+        <div class="dash-title-row">
+          <div>
+            <span class="dash-title">Executive Dashboard</span><span class="dash-title-period"> ·&nbsp; November 2026</span>
+          </div>
+          <div class="dash-live">
+            <span class="dash-live-dot-wrap">
+              <span class="dash-live-dot"></span>
+              <span class="dash-live-dot-pulse"></span>
+            </span>
+            <span>Live&nbsp; ·&nbsp; last refreshed 14:32</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-controls">
+        <div class="dash-periods" role="group" aria-label="Period">
+          <button type="button" class="dash-period-btn is-selected">This month</button>
+          <button type="button" class="dash-period-btn">Last month</button>
+          <button type="button" class="dash-period-btn">YTD</button>
+          <button type="button" class="dash-period-btn">Rolling 12 months</button>
+        </div>
+        <div class="dash-legend">
+          <span class="dash-legend-item"><span class="dash-legend-swatch dash-legend-swatch--ok"></span>On target</span>
+          <span class="dash-legend-item"><span class="dash-legend-swatch dash-legend-swatch--warn"></span>Warning</span>
+          <span class="dash-legend-item"><span class="dash-legend-swatch dash-legend-swatch--crit"></span>Critical</span>
+          <span class="dash-legend-vs">vs Target</span>
+        </div>
+      </div>
+
+      <div class="dash-grid" id="dash-grid"></div>
+
+      <div class="dash-footer-caption">Source &mdash; Poultry Management module &middot; Cost Transactions &middot; KPI Snapshots</div>
+    </section>
+
+    <div class="dash-separator">
+      <div class="dash-separator-label">MODULE NAVIGATION</div>
+    </div>
+
     <div class="toolbar">
       <button type="button" class="toolbar-btn" id="expand-all">
         <span class="tile">+</span>Expand all
@@ -496,6 +791,100 @@
   document.addEventListener('submit', function (e) { e.preventDefault(); });
 
   renderAll();
+})();
+
+/* ===== Executive Dashboard (additive) ===== */
+(function () {
+  var KPIS = [
+    { label:'Revenue this period',    value:'51,240', unit:'KD',     target:'50,000 KD', delta:'+2.5%',   deltaDir:'up',   dirGood:'up',   status:'ok',
+      spark:[46.2,47.1,47.8,48.4,48.9,49.2,49.8,50.1,50.4,50.8,51.0,51.2] },
+    { label:'Gross margin',           value:'37.5',   unit:'%',      target:'35.0%',     delta:'+2.5 pp', deltaDir:'up',   dirGood:'up',   status:'ok',
+      spark:[34.1,34.5,35.0,35.2,35.4,35.8,36.1,36.4,36.8,37.1,37.3,37.5] },
+    { label:'Cost per egg',           value:'0.0258', unit:'KD',     target:'0.0240 KD', delta:'+7.5%',   deltaDir:'up',   dirGood:'down', status:'warn',
+      spark:[0.0238,0.0240,0.0241,0.0242,0.0244,0.0246,0.0248,0.0250,0.0252,0.0254,0.0256,0.0258] },
+    { label:'Total egg production',   value:'1.28',   unit:'M eggs', target:'1.25 M',    delta:'+2.4%',   deltaDir:'up',   dirGood:'up',   status:'ok',
+      spark:[1.21,1.22,1.23,1.24,1.24,1.25,1.25,1.26,1.27,1.27,1.28,1.28] },
+    { label:'Eggs per hen per day',   value:'0.853',  unit:'',       target:'0.850',     delta:'+0.4%',   deltaDir:'up',   dirGood:'up',   status:'ok',
+      spark:[0.846,0.848,0.849,0.850,0.850,0.851,0.852,0.852,0.853,0.853,0.853,0.853] },
+    { label:'Mortality',              value:'2.4',    unit:'%',      target:'1.5%',      delta:'+60%',    deltaDir:'up',   dirGood:'down', status:'crit',
+      spark:[1.4,1.5,1.5,1.6,1.6,1.7,1.8,1.9,2.0,2.2,2.3,2.4] },
+    { label:'Feed conversion ratio',  value:'2.18',   unit:'kg/kg',  target:'2.05',      delta:'+6.3%',   deltaDir:'up',   dirGood:'down', status:'warn',
+      spark:[2.04,2.05,2.06,2.08,2.10,2.11,2.13,2.14,2.15,2.16,2.17,2.18] },
+    { label:'Dispatch volume',        value:'1.21',   unit:'M eggs', target:'1.20 M',    delta:'+0.8%',   deltaDir:'up',   dirGood:'up',   status:'ok',
+      spark:[1.16,1.17,1.18,1.18,1.19,1.19,1.19,1.20,1.20,1.20,1.21,1.21] },
+    { label:'Current bird count',     value:'49,820', unit:'',       target:'50,000',    delta:'-0.4%',   deltaDir:'down', dirGood:'up',   status:'ok',
+      spark:[50100,50080,50060,50040,50000,49980,49960,49940,49900,49870,49840,49820] },
+    { label:'Vaccination compliance', value:'98.2',   unit:'%',      target:'95.0%',     delta:'+3.2 pp', deltaDir:'up',   dirGood:'up',   status:'ok',
+      spark:[96.5,96.8,97.0,97.2,97.4,97.5,97.7,97.9,98.0,98.1,98.2,98.2] }
+  ];
+
+  var W = 110, H = 28;
+  var STATUS_COLOR = { ok:'#107C10', warn:'#B07500', crit:'#A4262C' };
+  var STATUS_LABEL = { ok:'ON TARGET', warn:'WARNING', crit:'CRITICAL' };
+
+  var ARROW_UP   = '<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><polyline points="2,7 5,3 8,7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var ARROW_DOWN = '<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><polyline points="2,3 5,7 8,3" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  function buildSparkPoints(data) {
+    var min = Math.min.apply(null, data);
+    var max = Math.max.apply(null, data);
+    var range = (max - min) || 1;
+    var pts = [];
+    for (var i = 0; i < data.length; i++) {
+      var x = (i / (data.length - 1)) * (W - 2) + 1;
+      var y = H - 2 - ((data[i] - min) / range) * (H - 6);
+      pts.push(x.toFixed(2) + ',' + y.toFixed(2));
+    }
+    return pts;
+  }
+
+  function sparklineSVG(data, color) {
+    var pts = buildSparkPoints(data);
+    var firstX = pts[0].split(',')[0];
+    var lastX = pts[pts.length - 1].split(',')[0];
+    var areaPts = firstX + ',' + H + ' ' + pts.join(' ') + ' ' + lastX + ',' + H;
+    var linePts = pts.join(' ');
+    return '<svg class="dash-spark" width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" aria-hidden="true">' +
+             '<polyline points="' + areaPts + '" fill="' + color + '" fill-opacity="0.10" stroke="none"/>' +
+             '<polyline points="' + linePts + '" fill="none" stroke="' + color + '" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>' +
+           '</svg>';
+  }
+
+  function tileHTML(k) {
+    var deltaIsGood = (k.dirGood === 'up' && k.deltaDir === 'up') || (k.dirGood === 'down' && k.deltaDir === 'down');
+    var deltaClass = deltaIsGood ? 'dash-delta--good' : (k.status === 'crit' ? 'dash-delta--crit' : 'dash-delta--warn');
+    var arrow = k.deltaDir === 'up' ? ARROW_UP : ARROW_DOWN;
+    var unitHTML = k.unit ? '<span class="dash-unit">' + k.unit + '</span>' : '';
+    return '<div class="dash-tile dash-tile--' + k.status + '">' +
+             '<div>' +
+               '<div class="dash-tile-top">' +
+                 '<div class="dash-tile-label">' + k.label + '</div>' +
+                 '<span class="dash-pill dash-pill--' + k.status + '">' + STATUS_LABEL[k.status] + '</span>' +
+               '</div>' +
+               '<div class="dash-tile-value-row">' +
+                 '<span class="dash-value">' + k.value + '</span>' + unitHTML +
+               '</div>' +
+               '<div class="dash-tile-meta">' +
+                 '<span class="dash-target">Target ' + k.target + '</span>' +
+                 '<span class="dash-delta ' + deltaClass + '">' + arrow + k.delta + '</span>' +
+               '</div>' +
+             '</div>' +
+             sparklineSVG(k.spark, STATUS_COLOR[k.status]) +
+           '</div>';
+  }
+
+  var grid = document.getElementById('dash-grid');
+  if (grid) {
+    grid.innerHTML = KPIS.map(tileHTML).join('');
+    grid.addEventListener('click', function (e) {
+      if (e.target.closest('.dash-tile')) { e.preventDefault(); }
+    });
+  }
+
+  var periodBtns = document.querySelectorAll('.dash-period-btn');
+  for (var i = 0; i < periodBtns.length; i++) {
+    periodBtns[i].addEventListener('click', function (e) { e.preventDefault(); });
+  }
 })();
 </script>
 
